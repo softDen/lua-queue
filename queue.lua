@@ -1,5 +1,9 @@
 function getQueue()
 	local get = function(self)
+		if self["min"] >= self["max"] then
+			print("Tried get value from empty queue")
+			error()
+		end
 		local val = self["data"][self["min"]]
 		self["min"] = self["min"] + 1
 		return val
