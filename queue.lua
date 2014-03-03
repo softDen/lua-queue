@@ -12,6 +12,17 @@ function getQueue()
 		self["data"][self["max"]] = val
 		self["max"] = self["max"] + 1
 	end
+	local printQueue = function(self)
+		io.write("\27[34m")
+		for x, e in pairs(self.data) do
+			if x == self.min then
+				io.write("\27[32m"..e.."\27[33m ")
+			else
+				io.write(e.." ")
+			end
+		end
+		io.write("\27[0m\n")
+	end
 
 	queueObj = {}
 	queueObj["data"] = {}
@@ -19,6 +30,7 @@ function getQueue()
 	queueObj["max"] = 1
 	queueObj["get"] = get
 	queueObj["put"] = put
+	queueObj["printQueue"] = printQueue
 
 	return queueObj
 end
