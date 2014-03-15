@@ -14,6 +14,16 @@ function getQueue()
 		self["data"][self["max"]] = val
 		self["max"] = self["max"] + 1
 	end
+	queueObj.reduce = function(self)
+		for i=self["min"],#self["data"] do
+			self["data"][i-self["min"]+1] = self["data"][i]
+		end
+		self["max"] = self["max"] - self["min"]+1
+		self["min"] = 1
+		for i=self["max"],#self["data"] do
+			self["data"][i] = nil
+		end
+	end
 	queueObj.printQueue = function(self)
 		io.write("\27[34m")
 		for x, e in pairs(self.data) do
