@@ -1,4 +1,6 @@
 function getQueue(autoReduce)
+	autoReduce = autoReduce or 50
+
 	queueObj = {}
 
 	queueObj.get = function(self)
