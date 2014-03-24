@@ -1,4 +1,4 @@
-function getQueue()
+function getQueue(autoReduce)
 	queueObj = {}
 
 	queueObj.get = function(self)
@@ -8,6 +8,9 @@ function getQueue()
 		end
 		local val = self["data"][self["min"]]
 		self["min"] = self["min"] + 1
+		if self["min"] > autoReduce then
+			self:reduce()
+		end
 		return val
 	end
 	queueObj.put = function(self, val)
